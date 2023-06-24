@@ -3,9 +3,9 @@ package org.girardsimon;
 import org.girardsimon.exception.ExcessiveSizeException;
 import org.girardsimon.exception.ZeroOrNegativeSizeException;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public final class PascalTriangle {
     /*
@@ -23,15 +23,10 @@ public final class PascalTriangle {
 
     public static PascalTriangle generate(int size) {
         checkSize(size);
-        List<PascalLine> pascalLines = new ArrayList<>();
-        PascalLine currentPascalLine = new PascalLine(Collections.singletonList(1L));
-        int counter = size;
-        while(counter > 0) {
-            pascalLines.add(currentPascalLine);
-            currentPascalLine = currentPascalLine.getNextLine();
-            counter--;
-        }
-
+        PascalLine initialLine = new PascalLine(Collections.singletonList(1L));
+        List<PascalLine> pascalLines = Stream.iterate(initialLine, PascalLine::getNextLine)
+                .limit(size)
+                .toList();
         return new PascalTriangle(pascalLines);
     }
 
