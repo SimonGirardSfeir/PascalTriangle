@@ -16,6 +16,7 @@ class PascalTriangleTest {
         //When
         String actualPrintedTriangle = pascalTriangle.toString();
 
+        //Then
         String expectedPrintedTriangle = """
                  1\s
                  1 1\s
@@ -31,7 +32,6 @@ class PascalTriangleTest {
         assertThatExceptionOfType(ZeroOrNegativeSizeException.class)
                 .isThrownBy(() -> PascalTriangle.generate(-1));
     }
-
     @Test
     void generate_should_return_ExcessiveSizeException_if_user_try_to_generate_PascalTriangle_with_a_size_greater_than_67() {
         assertThatExceptionOfType(ExcessiveSizeException.class)

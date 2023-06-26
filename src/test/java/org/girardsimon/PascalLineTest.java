@@ -12,17 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PascalLineTest {
 
-    private static Stream<Arguments> inputsGetNextLine() {
+    private static Stream<Arguments> inputsNextLine() {
         return Stream.of(
                 Arguments.of(new PascalLine(Collections.singletonList(1L)), new PascalLine(List.of(1L,1L))),
                 Arguments.of(new PascalLine(List.of(1L,1L)), new PascalLine(List.of(1L,2L,1L))),
                 Arguments.of(new PascalLine(List.of(1L,6L,15L,20L,15L,6L,1L)), new PascalLine(List.of(1L,7L,21L,35L,35L,21L,7L,1L)))
         );
     }
-    @MethodSource("inputsGetNextLine")
+    @MethodSource("inputsNextLine")
     @ParameterizedTest
-    void getNextLine_should_return_expected_line(PascalLine givenPascalLine, PascalLine expectedPascalLine) {
-        PascalLine actualPascalLine = givenPascalLine.getNextLine();
+    void nextLine_should_return_expected_line(PascalLine givenPascalLine, PascalLine expectedPascalLine) {
+        PascalLine actualPascalLine = givenPascalLine.nextLine();
 
         assertThat(actualPascalLine).isEqualTo(expectedPascalLine);
     }
